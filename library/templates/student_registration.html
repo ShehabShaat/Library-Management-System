@@ -1,0 +1,95 @@
+{% extends 'base_fullscreen.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="card">
+            <div class="row align-items-center text-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <img src="/static/assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
+
+                        <h4 class="mb-3 f-w-400">Sign UP</h4>
+
+                            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                                <br>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-user"></i></span>
+                                    
+                                    <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-user"></i></span>
+                                    <input type="text" class="form-control mt-2" name="first_name" placeholder="Enter First Name" required>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-user"></i></span>
+                                    <input type="text" class="form-control mt-2" name="last_name" placeholder="Enter Last Name" required>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-mail"></i></span>
+                                    <input type="email" class="form-control mt-2" name="email" placeholder="Enter Email" required>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-phone"></i></span>
+                                    <input type="number" class="form-control mt-2" name="phone" placeholder="Enter Mobile Number" required>
+                                </div>
+                            
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-home"></i></span>
+                                    <input type="text" class="form-control mt-2" name="classroom" placeholder="Enter Class Name" required>
+                                </div>
+                            
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-home"></i></span>
+                                        <input type="text" class="form-control mt-2" name="branch" placeholder="Enter Branch Name" required>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="feather icon-hash"></i></span>
+                                    <input type="text" class="form-control mt-2" name="roll_no" placeholder="Enter Roll Number" required>
+                                </div>
+
+                        
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text"><i class="feather icon-image"></i></span>
+
+                                    <input type="file" class="form-control mt-2" name="image" required>
+                                </div>
+                        
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text"><i class="feather icon-lock"></i></span>
+                                    <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+                                </div>
+                                
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text"><i class="feather icon-lock"></i></span>
+                                    <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm Password" required>
+                                </div>
+                            <button type="submit" class="btn btn-outline-primary mt-4">Register As Student</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Registration Successfull.")
+    document.location = "/student_login"
+    {% endif %}
+</script>
+{% endblock %}
+

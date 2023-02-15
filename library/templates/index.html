@@ -1,0 +1,81 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <div class="p-4 bg-light">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+
+  
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Go to Admin Page</h5>
+                  <p class="card-text">If you are an Admin, you can log in from here.</p>
+                  <a href="/admin_login/" class="btn btn-primary">Login</a>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Go to Student Page</h5>
+                  <p class="card-text">If you are an Student, you can log in from here.</p>
+                  <a href="/student_login/" class="btn btn-primary">Login</a>
+                  <a href="/student_registration/" class="btn btn-primary">Regester</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+{% comment %} 
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'admin.png' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Admin</h5>
+    <p class="card-text">If you are an Admin, you can log in from here.</p>
+    <a href="/admin_login/" class="btn btn-primary">Login</a>
+  </div>
+</div>
+
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{% static 'students.png' %}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Student</h5>
+    <p class="card-text">If you are an Student, you can log in from here.</p>
+    <a href="/admin_login/" class="btn btn-primary">Login</a>
+    <a href="/admin_login/" class="btn btn-primary">Rregester</a>
+  </div>
+</div>
+  {% endcomment %}
+
+  </div>
+  </div>
+</div>
+
+</div>
+		
+<!-- [ Main Content ] end -->
+
+</div>
+</div>
+{% endblock %}

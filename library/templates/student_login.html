@@ -1,0 +1,45 @@
+{% extends 'base_fullscreen.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="card">
+            <div class="row align-items-center text-center">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <img src="/static/assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
+
+                        <h4 class="mb-3 f-w-400">Student Sign In</h4>
+                
+                        <br /><br />
+                        <form method="POST"> {% csrf_token %}
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="feather icon-user"></i></span>
+
+                                <input type="text" class="form-control mt-2" name="username" placeholder="Enter Username" required>
+                            </div>
+
+                            <div class="input-group mb-4">
+                                <span class="input-group-text"><i class="feather icon-lock"></i></span>
+                                <input type="password" class="form-control mt-2" name="password" placeholder="Enter Password" required>
+                            </div>
+                        <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Invalid Username or Password.")
+    document.location = "/student_login"
+    {% endif %}
+</script>
+{% endblock %}
