@@ -31,9 +31,8 @@
                 <p>@{{user}}</p>
                 <div class = "mt-0 mb-4">
                 <a> <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal{{obj.id}}" data-bs-whatever="@getbootstrap">Edit Profile</button>  </a>
-{% comment %} <a> <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeModal{{user.id}}" data-bs-whatever="@getbootstrap">Change Password</button>  </a> {% endcomment %}
-                
-            </div>
+                </div>
+                {% comment %} <a> <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeModal{{user.id}}" data-bs-whatever="@getbootstrap">Change Password</button>  </a> {% endcomment %}
 
                 <i class="far fa-edit mb-5"></i>
                 
@@ -86,6 +85,7 @@
         </div>
       </div>
     </div>
+  </section>
 
   <div class="modal fade"id="EditModal{{obj.id}}" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -103,37 +103,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label><i style="font-weight: bold;">Mobile Number</i></label>
-                        <input ty  <form method="POST"> {% csrf_token %}
-                <div class="row mt-4">
-                    <div class="form-group col-md-6">
-                        <label><i style="font-weight: bold;">Email</i></label>
-                        <input type="email" class="form-control mt-2" name="email" value="{{user.email}}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label><i style="font-weight: bold;">Mobile Number</i></label>
                         <input type="number" class="form-control mt-2" name="phone" value="{{user.student.phone}}">
-                    </div>
-                </div>
-                
-                <div class="row mt-4">
-                    <div class="form-group col-md-6">
-                        <label><i style="font-weight: bold;">Branch Name</i></label>
-                        <input type="text" class="form-control mt-2" name="branch" value="{{user.student.branch}}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label><i style="font-weight: bold;">Class Name</i></label>
-                        <input type="text" class="form-control mt-2" name="classroom" value="{{user.student.classroom}}">
-                    </div>
-                </div>
-                
-                <div class="row mt-4">
-                    <div class="form-group col-md-6">
-                        <label><i style="font-weight: bold;">Roll Number</i></label>
-                        <input type="text" class="form-control mt-2" name="roll_no" value="{{user.student.roll_no}}">
-                    </div>
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary mt-5">Update Profile</button>
-                </form>pe="number" class="form-control mt-2" name="phone" value="{{user.student.phone}}">
                     </div>
                 </div>
                 
@@ -172,46 +142,14 @@
              </div>
              <div class="modal-body">
 
-                <form class="container mt-3" method="POST" name="change_password" onsubmit="return checkPassword()">
-                    {% csrf_token %}
-                    <div class="row mt-4">
-                        <div class="form-group col-md-6">
-                            <label><i style="font-weight: bold;">Username</i></label>
-                            <input type="text" class="form-control mt-2" name="username" value="{{request.user}}" readonly>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label><i style="font-weight: bold;">Current Password</i></label>
-                            <input type="password" class="form-control mt-2" name="current_password" placeholder="Current Password">
-                        </div>
-                    </div>
-                
-                    <div class="row mt-4">
-                        <div class="form-group col-md-12">
-                            <label><i style="font-weight: bold;">New Password</i></label>
-                            <input type="password" class="form-control mt-2" name="new_password" placeholder="Enter the new password">
-                        </div>
-                    </div>
-                
-                    <div class="row mt-4">
-                        <div class="form-group col-md-12">
-                            <label><i style="font-weight: bold;">Confirm Password</i></label>
-                            <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm the new password">
-                        </div>
-                    </div>
-                
-                    <input type="submit" class="btn btn-outline-primary mt-4" value="Update Password">
-                </form>
+ 
 
 
             </div>
 
         </div>
-        
     </div>
 </div>
-
-</section>
-
 {% comment %} ==== {% endcomment %}
       
                   
