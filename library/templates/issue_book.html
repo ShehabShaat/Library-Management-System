@@ -5,6 +5,49 @@
 {% endblock %}
 {% block body %}
 <div class="container mt-4">
+
+    <h1 class="text-center"><u>All Issued Books</u></h1>
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr class="text-center">
+                <th>Sr.No</th>
+                <th>Student</th>
+                <th>Student ID</th>
+                <th>Book Name</th>
+                <th>ISBN</th>
+                <th>Issued Date</th>
+                <th>Expiry Date</th>
+                <th>Fine</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in details %}
+            <tr class="text-center">
+                <td>{{forloop.counter}}.</td>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+                <td>{{i.3}}</td>
+                <td>{{i.4}}</td>
+                <td>{{i.5}}</td>
+                <td>₹ {{i.6}}</td>
+                <td><a href="/delete_issue/{{issuedBooks.id}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this issued book details?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#issueModal{{obj.id}}" data-bs-whatever="@getbootstrap">isuee Book</button>
+
+        <div class="modal fade"id="issueModal{{obj.id}}" tabindex="-1" aria-labelledby="issueModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="issueModalLabel"><i class="fas fa-plus"></i>&nbsp;&nbsp;issue Book </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
     <form method="POST"> {% csrf_token %}
         {% for i in form %}
         <div class="form-group">
@@ -14,17 +57,28 @@
           {{ i }}
            </div>
         </div>
-        {% endfor %}
-    <button type="submit" class="btn btn-outline-primary mt-4">Issue Book</button>
+              {% endfor %}
+        </div>
+        <div class="modal-footer">
+
+        <button type="submit" class="btn btn-secondary">Issue Book</button>
 </div>
-</form>
+
+     </form>
+
+</div>
+</div>
+
+
+
 {% endblock %}
-{% block js %}
+{% block jss %}
 <script>
     {% if alert %}
     alert("Book Successfully Issued.")
     document.location = "/issue_book"
     {% endif %}
 </script>
-{% endblock %}
+{% endblock jss %}
+
 

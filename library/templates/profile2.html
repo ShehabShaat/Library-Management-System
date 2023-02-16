@@ -1,0 +1,244 @@
+{% extends 'student_navbar.html' %}
+{% block css %}
+<style>
+    .gradient-custom {
+        /* fallback for old browsers */
+        background: #5f59f7;
+        
+        /* Chrome 10-25, Safari 5.1-6 */
+        {% comment %} background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+        
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)) {% endcomment %}
+        }
+
+</style>
+{% endblock css %}
+{% block body %}
+
+<section class="vh-100" style="background-color: #f4f5f7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="{{user.student.image.url}}"
+                  alt="Avatar" class="img-fluid my-5" style="width: 120px;" />
+                <h5>{{user.get_full_name}}</h5>
+    
+                <p>@{{user}}</p>
+                <div class = "mt-0 mb-4">
+                <a> <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal{{obj.id}}" data-bs-whatever="@getbootstrap">Edit Profile</button>  </a>
+{% comment %} <a> <button type="button" style="text-align = center " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ChangeModal{{user.id}}" data-bs-whatever="@getbootstrap">Change Password</button>  </a> {% endcomment %}
+                
+            </div>
+
+                <i class="far fa-edit mb-5"></i>
+                
+              </div>
+
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Information</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted">{{user.email}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Phone</h6>
+                      <p class="text-muted">{{user.student.phone}}</p>
+                    </div>  
+                  </div>
+                  <div class="row pt-1" >
+                    <div class="col-6 mb-3">
+                        <h6>Branch</h6>
+                        <p class="text-muted">{{user.student.branch}}</p>
+                    </div>  
+                      <div class="col-6 mb-3">
+                        <h6>Classroom</h6>
+                        <p class="text-muted">{{user.student.classroom}}</p>
+                      </div>    
+                  </div>
+                  <div class="row pt-1" >
+                    <div class="col-6 mb-3">
+                        <h6>Roll-No</h6>
+                        <p class="text-muted">{{user.student.roll_no}}</p>
+                    </div>  
+                      <div class="col-6 mb-3">
+                        <h6>ID</h6>
+                        <p class="text-muted">{{user.id}}</p>
+                      </div>    
+                  </div>
+               
+                  <div class="d-flex justify-content-start">
+                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="modal fade"id="EditModal{{obj.id}}" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="EditModalLabel"><i class="fas fa-plus"></i>&nbsp;&nbsp;Edit Profile </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST"> {% csrf_token %}
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Email</i></label>
+                        <input type="email" class="form-control mt-2" name="email" value="{{user.email}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Mobile Number</i></label>
+                        <input ty  <form method="POST"> {% csrf_token %}
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Email</i></label>
+                        <input type="email" class="form-control mt-2" name="email" value="{{user.email}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Mobile Number</i></label>
+                        <input type="number" class="form-control mt-2" name="phone" value="{{user.student.phone}}">
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Branch Name</i></label>
+                        <input type="text" class="form-control mt-2" name="branch" value="{{user.student.branch}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Class Name</i></label>
+                        <input type="text" class="form-control mt-2" name="classroom" value="{{user.student.classroom}}">
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Roll Number</i></label>
+                        <input type="text" class="form-control mt-2" name="roll_no" value="{{user.student.roll_no}}">
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-5">Update Profile</button>
+                </form>pe="number" class="form-control mt-2" name="phone" value="{{user.student.phone}}">
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Branch Name</i></label>
+                        <input type="text" class="form-control mt-2" name="branch" value="{{user.student.branch}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Class Name</i></label>
+                        <input type="text" class="form-control mt-2" name="classroom" value="{{user.student.classroom}}">
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="form-group col-md-6">
+                        <label><i style="font-weight: bold;">Roll Number</i></label>
+                        <input type="text" class="form-control mt-2" name="roll_no" value="{{user.student.roll_no}}">
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-5">Update Profile</button>
+                </form>
+
+
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"id="ChangeModal{{obj.id}}" tabindex="-1" aria-labelledby="ChangeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ChangeModalLabel"><i class="fas fa-plus"></i>&nbsp;&nbsp;Edit Profile </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+
+                <form class="container mt-3" method="POST" name="change_password" onsubmit="return checkPassword()">
+                    {% csrf_token %}
+                    <div class="row mt-4">
+                        <div class="form-group col-md-6">
+                            <label><i style="font-weight: bold;">Username</i></label>
+                            <input type="text" class="form-control mt-2" name="username" value="{{request.user}}" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label><i style="font-weight: bold;">Current Password</i></label>
+                            <input type="password" class="form-control mt-2" name="current_password" placeholder="Current Password">
+                        </div>
+                    </div>
+                
+                    <div class="row mt-4">
+                        <div class="form-group col-md-12">
+                            <label><i style="font-weight: bold;">New Password</i></label>
+                            <input type="password" class="form-control mt-2" name="new_password" placeholder="Enter the new password">
+                        </div>
+                    </div>
+                
+                    <div class="row mt-4">
+                        <div class="form-group col-md-12">
+                            <label><i style="font-weight: bold;">Confirm Password</i></label>
+                            <input type="password" class="form-control mt-2" name="confirm_password" placeholder="Confirm the new password">
+                        </div>
+                    </div>
+                
+                    <input type="submit" class="btn btn-outline-primary mt-4" value="Update Password">
+                </form>
+
+
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+
+</section>
+
+{% comment %} ==== {% endcomment %}
+      
+                  
+        
+       
+        
+{% endblock  %}
+
+{% block jss %}
+<script>
+    function checkPassword() {
+        if (document.change_password.new_password.value != document.change_password.confirm_password.value) {
+            alert("New Password and Confirm Password fields does not match each other.");
+            document.change_password.confirm_password.focus();
+            return false;
+        }
+        return true;
+    }
+
+    {% if alert %}
+    alert("Password Updated Successfully.");
+    document.location = "/logout"
+    {% endif %}
+
+    {% if currpasswrong %}
+    alert("Current Password is wrong..");
+    document.location = "/change_password"
+    {% endif %}
+</script>
+{% endblock %}

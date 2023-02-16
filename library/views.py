@@ -25,32 +25,21 @@ def add_book(request):
         return render(request, "add_book.html", {'alert':alert})
     return render(request, "add_book.html",{'books':view_books})
 
-@login_required(login_url = '/admin_login')
-def view_books(request):
-    books = Book.objects.all()
-    return render(request, "view_books.html", {'books':books})
+# @login_required(login_url = '/admin_login')
+# def view_books(request):
+#     books = Book.objects.all()
+#     return render(request, "view_books.html", {'books':books})
 
 @login_required(login_url = '/admin_login')
 def view_students(request):
     students = Student.objects.all()
     return render(request, "view_students.html", {'students':students})
 
+
+
 @login_required(login_url = '/admin_login')
 def issue_book(request):
     form = forms.IssueBookForm()
-    if request.method == "POST":
-        form = forms.IssueBookForm(request.POST)
-        if form.is_valid():
-            obj = models.IssuedBook()
-            obj.student_id = request.POST['name2']
-            obj.isbn = request.POST['isbn2']
-            obj.save()
-            alert = True
-            return render(request, "issue_book.html", {'obj':obj, 'alert':alert})
-    return render(request, "issue_book.html", {'form':form})
-
-@login_required(login_url = '/admin_login')
-def view_issued_book(request):
     issuedBooks = IssuedBook.objects.all()
     details = []
     for i in issuedBooks:
@@ -68,7 +57,22 @@ def view_issued_book(request):
             t=(students[i].user,students[i].user_id,books[i].name,books[i].isbn,issuedBooks[0].issued_date,issuedBooks[0].expiry_date,fine)
             i=i+1
             details.append(t)
-    return render(request, "view_issued_book.html", {'issuedBooks':issuedBooks, 'details':details})
+            
+            
+    if request.method == "POST":
+        form = forms.IssueBookForm(request.POST)
+        if form.is_valid():
+            obj = models.IssuedBook()
+            obj.student_id = request.POST['name2']
+            obj.isbn = request.POST['isbn2']
+            obj.save()
+            alert = True
+            return render(request, "issue_book.html", {'obj':obj, 'alert':alert})
+    return render(request, "issue_book.html", {'form':form , 'issuedBooks':issuedBooks, 'details':details})
+
+#
+
+
 
 @login_required(login_url = '/student_login')
 def student_issued_books(request):
@@ -91,14 +95,13 @@ def student_issued_books(request):
             fine=day*5
         t=(issuedBooks[0].issued_date, issuedBooks[0].expiry_date, fine)
         li2.append(t)
-    return render(request,'student_issued_books.html',{'li1':li1, 'li2':li2})
+    context={'li1':li1, 'li2':li2}
+    return render(request,'student_issued_books.html',context)
+
 
 @login_required(login_url = '/student_login')
 def profile(request):
-    return render(request, "profile.html")
-
-@login_required(login_url = '/student_login')
-def edit_profile(request):
+    
     student = Student.objects.get(user=request.user)
     if request.method == "POST":
         email = request.POST['email']
@@ -115,22 +118,28 @@ def edit_profile(request):
         student.user.save()
         student.save()
         alert = True
-        return render(request, "edit_profile.html", {'alert':alert})
-    return render(request, "edit_profile.html")
+        return render(request, "profile2.html", {'alert':alert})
+    return render(request, "profile2.html")
 
+@login_required(login_url = '/admin_login')
 def delete_book(request, myid):
     books = Book.objects.filter(id=myid)
     books.delete()
     return redirect("/add_book")
+
+@login_required(login_url = '/admin_login')
 def delete_issue(request, myid):
     issue = IssuedBook.objects.filter(id=myid)
     issue.delete()
     return redirect("/view_issued_book")
+
+@login_required(login_url = '/admin_login')
 def delete_student(request, myid):
     students = Student.objects.filter(id=myid)
     students.delete()
     return redirect("/view_students")
 
+@login_required(login_url = '/admin_login')
 def change_password(request):
     if request.method == "POST":
         current_password = request.POST['current_password']
