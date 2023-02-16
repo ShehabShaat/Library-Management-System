@@ -1,4 +1,4 @@
-{% extends 'admin_navbar.html' %}
+    {% extends 'admin_navbar.html' %}
 {% load static %}
 {% block title %} Issue Book {% endblock %}
 {% block css %}
@@ -19,6 +19,7 @@
                 <th>Expiry Date</th>
                 <th>Fine</th>
                 <th>Delete</th>
+
             </tr>
         </thead>
         <tbody>
@@ -32,7 +33,7 @@
                 <td>{{i.4}}</td>
                 <td>{{i.5}}</td>
                 <td>₹ {{i.6}}</td>
-                <td><a href="/delete_issue/{{issuedBooks.id}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this issued book details?')">Delete</a></td>
+                <td><a href="/delete_issue/{{i.1}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this issued book details?')">Delete</a></td>
             </tr>
             {% endfor %}
         </tbody>

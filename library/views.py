@@ -129,9 +129,10 @@ def delete_book(request, myid):
 
 @login_required(login_url = '/admin_login')
 def delete_issue(request, myid):
-    issue = IssuedBook.objects.filter(id=myid)
+    issue = IssuedBook.objects.filter(student_id=myid)
     issue.delete()
-    return redirect("/view_issued_book")
+    return redirect("/issue_book")
+
 
 @login_required(login_url = '/admin_login')
 def delete_student(request, myid):
